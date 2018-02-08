@@ -14,7 +14,7 @@ public class SharedPrefManager {
     // Shared preferences file name
     private static final String PREF_NAME = "sessionPref";
     SharedPreferences.Editor editor;
-
+    private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
     public SharedPrefManager (Context context) {
         mContext = context;
         sharedPreferences = mContext.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
@@ -72,9 +72,22 @@ public class SharedPrefManager {
         editor.putString("NAME", name);
         editor.commit();
     }
+    public void setFirstTimeLaunch(Context context,boolean isFirstTime) {
+        mContext = context;
+        sharedPreferences = mContext.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
+        editor.commit();
+    }
+
+    public boolean getFirstTimeLaunch() {
+        sharedPreferences = mContext.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        return sharedPreferences.getBoolean("IsFirstTimeLaunch", false);
+    }
 
     public String getName(){
         sharedPreferences = mContext.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+
         return sharedPreferences.getString("NAME", null);
     }
 

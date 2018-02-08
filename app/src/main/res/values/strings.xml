@@ -1,4 +1,35 @@
 <resources>
     <string name="app_name">Wirecamp</string>
-    <string name="webclient_id">211416102232-hn2b5egu311lhfl9ra9khs9uch01eflc.apps.googleusercontent.com</string>
+    <string name="webclient_id">211416102232-od1p24gqvgfctj37hd2jt77rlp5dr429.apps.googleusercontent.com</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="wirecamp_interactive">WireCamp Interactive LLP</string>
+    <string name="sample_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="slide_1_title">Lorem Ipsum!</string>
+    <string name="slide_1_desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+
+    <string name="slide_2_title">Lorem Ipsum!</string>
+    <string name="slide_2_desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+
+    <string name="slide_3_title">Great Discounts</string>
+    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+
+    <string name="slide_4_title">World Travel</string>
+    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+    <string name="start">Start</string>
+    <string name="next">Next</string>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="search">Search</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
 </resources>

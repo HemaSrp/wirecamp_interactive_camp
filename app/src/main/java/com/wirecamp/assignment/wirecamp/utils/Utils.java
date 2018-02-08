@@ -2,6 +2,10 @@ package com.wirecamp.assignment.wirecamp.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+
+import com.wirecamp.assignment.wirecamp.retrofit.RestClient;
+import com.wirecamp.assignment.wirecamp.retrofit.SOSInterface;
+
 /**
  * Created by hema on 7/2/18.
  */
@@ -9,6 +13,18 @@ import android.net.NetworkInfo;
 public class Utils {
 
     private Context mContext = null;
+
+    //Base url of the app
+    private static final String BASE_URL = "http://transport.opendata.ch";
+
+    /**
+     * This method is used to create SOSinterface
+     *
+     * @return client
+     */
+    public static SOSInterface getSOService() {
+        return RestClient.getClient(BASE_URL).create(SOSInterface.class);
+    }
 
     /**
      * Public constructor that takes mContext for later use

@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.firebase.client.Firebase;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -26,14 +25,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.wirecamp.assignment.wirecamp.MainActivity;
 import com.wirecamp.assignment.wirecamp.R;
-import com.wirecamp.assignment.wirecamp.utils.Constants;
 import com.wirecamp.assignment.wirecamp.utils.SharedPrefManager;
 import com.wirecamp.assignment.wirecamp.utils.Utils;
-
-
-import java.util.HashMap;
 
 /**
  * Created by hema on 7/2/18.
@@ -61,7 +55,8 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
 
         mSignInButton = (SignInButton) findViewById(R.id.login_with_google);
         mSignInButton.setSize(SignInButton.SIZE_WIDE);
@@ -73,7 +68,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
         mAuth = com.google.firebase.auth.FirebaseAuth.getInstance();
 
         //this is where we start the Auth state Listener to listen for whether the user is signed in or not
-       /* mAuthListener = new FirebaseAuth.AuthStateListener(){
+        mAuthListener = new FirebaseAuth.AuthStateListener(){
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 // Get signedIn user
@@ -89,7 +84,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
             }
-        };*/
+        };
     }
 
 
@@ -175,7 +170,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
                           //  createUserInFirebaseHelper();
                             Toast.makeText(LoginScreen.this, "Login successful",
                                     Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginScreen.this, MainActivity.class);
+                            Intent intent = new Intent(LoginScreen.this, WelcomeActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
