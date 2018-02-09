@@ -1,6 +1,7 @@
 package com.wirecamp.assignment.wirecamp.activity;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.wirecamp.assignment.wirecamp.R;
 import com.wirecamp.assignment.wirecamp.fragment.ConnectionFragment;
 import com.wirecamp.assignment.wirecamp.fragment.FavouritesConnectionFragment;
@@ -31,12 +33,20 @@ import com.wirecamp.assignment.wirecamp.utils.SharedPrefManager;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SearchFragment.RegenerateArrayButtonClick {
 
+
+    //This class used to store with key and value
     private SharedPrefManager sharedPrefManager;
+
+    //Context of the class
     private final Context mContext = this;
-    private TextView mTextMessage;
-    private int[] bottomBarColors;
+
+    //Floating action button
     private FloatingActionButton fab;
+
+    //Fragment name
     private String chooseFragment=Constants.CONNECTION_FRAGMENT;
+
+    //Toolbar
     private Toolbar toolbar;
 
     @Override
@@ -44,9 +54,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -54,6 +61,9 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
     }
 
+    /**
+     * This method is used to initialize the views
+     */
     private void initViews() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -67,20 +77,26 @@ public class MainActivity extends AppCompatActivity
         TextView txtEmailId=(TextView)headerView.findViewById(R.id.emailId);
         txtName.setText(sharedPrefManager.getName());
         txtEmailId.setText(sharedPrefManager.getUserEmail());
-        mTextMessage = (TextView) findViewById(R.id.message);
+        String imgUrl=sharedPrefManager.getPhoto();
+        Glide.with(this)
+                .load(Uri.parse(imgUrl))
+                .into(imgProfilePic);
+        showSearchFragment();
+        changeFragment(0);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showSearchFragment();
             }
         });
-        showSearchFragment();
-        changeFragment(0);
     }
 
+    /**
+     * This method is used to display the dialog fragment when the view is crated
+     */
     private void showSearchFragment() {
         FragmentManager fm = getSupportFragmentManager();
-        SearchFragment editNameDialogFragment = SearchFragment.newInstance("SearchFragment");
+        SearchFragment editNameDialogFragment = SearchFragment.newInstance();
         editNameDialogFragment.show(fm, "fragment_search");
     }
 
@@ -139,7 +155,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClickButton() {
         changeFragment(0);
-
     }
 }
 

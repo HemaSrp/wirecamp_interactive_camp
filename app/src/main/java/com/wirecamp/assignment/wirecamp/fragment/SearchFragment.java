@@ -106,7 +106,11 @@ public class SearchFragment extends DialogFragment {
                     anim.setDuration(15000);
                     anim.setInterpolator(new DecelerateInterpolator());
                     anim.start();
-                    loadCollectionApi(txtFrom, txtTo);
+                    if (Utils.isNetworkAvailable(getActivity())) {
+                        loadCollectionApi(txtFrom, txtTo);
+                    }else{
+                        Toast.makeText(getActivity(), "Oops! no internet connection!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -132,11 +136,11 @@ public class SearchFragment extends DialogFragment {
                             dbModel.setFromName(connection.getFrom().getStation().getName());
                             dbModel.setFromLatitude(connection.getFrom().getStation().getCoordinate().getX());
                             dbModel.setToLongitude(connection.getFrom().getStation().getCoordinate().getY());
-                            dbModel.setDepatureTime(connection.getFrom().getDepartureTimestamp());
+                            dbModel.setDepatureTime(connection.getFrom().getDeparture());
                             dbModel.setToName(connection.getTo().getStation().getName());
                             dbModel.setToLatitude(connection.getTo().getStation().getCoordinate().getX());
                             dbModel.setToLongitude(connection.getTo().getStation().getCoordinate().getY());
-                            dbModel.setArrivalTime(connection.getTo().getArrivalTimestamp());
+                            dbModel.setArrivalTime(connection.getTo().getArrival());
                             dbModel.setFavourites("0");
                             dbModel.setRandomId(String.valueOf(UUID.randomUUID()));
                             db.insertCollections(dbModel);

@@ -1,5 +1,6 @@
 package com.wirecamp.assignment.wirecamp.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -32,24 +33,49 @@ import com.wirecamp.assignment.wirecamp.utils.Utils;
 
 /**
  * This class handles Google Firebase Authentication and also saves the user details to Firebase
-
  */
 public class LoginScreen extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
 
+    //Googleapi client
     private GoogleApiClient mGoogleApiClient;
+
+    //Firebase auth
     private FirebaseAuth mAuth;
+
+    //Firebase auth state listener
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    //Sign in
     private static final int RC_SIGN_IN = 9001;
+
+    //Tag
     private static final String TAG = "MainActivity";
+
+    //Gmailtoken
     private String idToken;
+
+    //Context
     private final Context mContext = this;
+
+    //Name and email
     private String name, email;
+
+    //Photo
     private String photo;
+
+    //Profile pic photoUri
     private Uri photoUri;
+
+    //Signin button
     private SignInButton mSignInButton;
+
+    //Shared preference manager
     private SharedPrefManager sharedPrefManager;
+
+    //Progress dialog
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,7 +185,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
      * After a successful sign into Google, this method now authenticates the user with Firebase
      */
     private void firebaseAuthWithGoogle(AuthCredential credential){
-       // showProgressDialog();
+        showProgressDialog();
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -178,9 +204,28 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
                             startActivity(intent);
                             finish();
                         }
-         //               hideProgressDialog();
+                        hideProgressDialog();
                     }
                 });
+    }
+
+    /**
+     * This method is used to hide the progress dialog
+     */
+    private void hideProgressDialog() {
+        progress.dismiss();
+    }
+
+    /**
+     * This method is used to display the show progress dialog.
+     */
+    private void showProgressDialog() {
+        progress=new ProgressDialog(this);
+        progress.setMessage("Signing in.....Please wait...");
+        progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progress.setIndeterminate(true);
+        progress.setProgress(0);
+        progress.show();
     }
 
     @Override
@@ -217,7 +262,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
         int id = view.getId();
 
         if (id == R.id.login_with_google){
-            if (utils.isNetworkAvailable()){
+            if (Utils.isNetworkAvailable(this)){
                 signIn();
             }else {
                 Toast.makeText(LoginScreen.this, "Oops! no internet connection!", Toast.LENGTH_SHORT).show();
@@ -228,5 +273,19 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(progress!=null)
+            progress.dismiss();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(progress!=null)
+            progress.dismiss();
     }
 }

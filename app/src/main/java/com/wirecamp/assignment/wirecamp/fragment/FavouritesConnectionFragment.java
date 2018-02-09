@@ -100,7 +100,6 @@ public class FavouritesConnectionFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new SeperatorDecoration(getActivity(), ContextCompat.getColor(getActivity(), R.color.white), 10.0f));
         recyclerView.setAdapter(mAdapter);
     }
 }

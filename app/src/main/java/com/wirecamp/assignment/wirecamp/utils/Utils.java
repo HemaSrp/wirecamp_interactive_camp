@@ -6,13 +6,18 @@ import android.net.NetworkInfo;
 import com.wirecamp.assignment.wirecamp.retrofit.RestClient;
 import com.wirecamp.assignment.wirecamp.retrofit.SOSInterface;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * This class is the base application of the class.
  */
 
 public class Utils {
 
-    private Context mContext = null;
+    private static Context mContext = null;
 
     //Base url of the app
     private static final String BASE_URL = "http://transport.opendata.ch";
@@ -42,15 +47,28 @@ public class Utils {
     }
 
     //This is a method to Check if the device internet connection is currently on
-    public boolean isNetworkAvailable() {
+    public static boolean isNetworkAvailable(Context loginScreen) {
 
         ConnectivityManager connectivityManager
 
-                = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+                = (ConnectivityManager) loginScreen.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
 
+    }
+
+    public static String dateFormat(String arrivalTime){
+        SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ", Locale.ENGLISH);
+        SimpleDateFormat targetFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = originalFormat.parse(arrivalTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String formattedDate = targetFormat.format(date);
+        return formattedDate;
     }
 }

@@ -11,6 +11,7 @@ import com.wirecamp.assignment.wirecamp.R;
 import com.wirecamp.assignment.wirecamp.database.DatabaseHandler;
 import com.wirecamp.assignment.wirecamp.model.DatabaseModel;
 import com.wirecamp.assignment.wirecamp.utils.Constants;
+import com.wirecamp.assignment.wirecamp.utils.Utils;
 
 import java.util.List;
 
@@ -54,8 +55,8 @@ public class ConnectionAdapter extends RecyclerView.Adapter<ConnectionAdapter.My
         final DatabaseModel favouriteList = connectionList.get(position);
         holder.fromName.setText(favouriteList.getFromName());
         holder.toName.setText(favouriteList.getToName());
-        holder.arrivalTime.setText(favouriteList.getArrivalTime());
-        holder.depatureTime.setText(favouriteList.getDepatureTime());
+        holder.arrivalTime.setText(Utils.dateFormat(favouriteList.getArrivalTime()));
+        holder.depatureTime.setText(Utils.dateFormat(favouriteList.getDepatureTime()));
         checkFavourites(holder,favouriteList);
         holder.imgFavourites.setOnClickListener(new View.OnClickListener() {
             @Override
