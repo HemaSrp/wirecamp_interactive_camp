@@ -1,6 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:elevation="20dp"
+    android:layout_margin="10dp"
 
-</android.support.constraint.ConstraintLayout>
+    app:cardCornerRadius="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fromName"
+            android:text="From"
+            android:gravity="center"
+            android:drawablePadding="10dp"
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"
+            android:drawableLeft="@drawable/ic_directions_transit_black_24dp"
+            />
+
+        <TextView
+            android:id="@+id/arrows"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/fromName"
+            android:layout_alignBottom="@+id/fromName"
+            android:layout_toEndOf="@+id/fromName"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="-------->"
+            android:textColor="@color/grey" />
+
+        <TextView
+            android:id="@+id/toName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/arrows"
+            android:layout_alignBottom="@+id/arrows"
+            android:layout_toEndOf="@+id/arrows"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:text="To"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/arrivalTime"
+            android:layout_below="@+id/fromName"
+            android:textColor="@color/grey"
+            android:layout_marginTop="5dp"
+            android:text="ArrivalTime"
+            android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/colon1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/arrivalTime"
+            android:layout_alignBottom="@+id/arrivalTime"
+            android:layout_toEndOf="@+id/arrivalTime"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:text="     : "
+            android:textSize="14sp"
+
+            android:textColor="@color/grey" />
+        <TextView
+            android:id="@+id/strArrivalTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/colon1"
+            android:layout_alignBottom="@+id/colon1"
+            android:layout_toEndOf="@+id/colon1"
+            android:gravity="center"
+            android:text="To"
+            android:textSize="14sp"
+
+            android:textColor="@color/grey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/depatureTime"
+            android:layout_marginTop="5dp"
+            android:text="DepatureTime"
+            android:layout_below="@+id/arrivalTime"
+            android:textColor="@color/grey"
+            android:textSize="14sp"/>
+        <TextView
+            android:id="@+id/colon2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/depatureTime"
+            android:layout_alignBottom="@+id/depatureTime"
+            android:layout_toEndOf="@+id/depatureTime"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textSize="14sp"
+            android:text=": "
+            android:textColor="@color/grey" />
+        <TextView
+            android:id="@+id/strDepatureTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/colon2"
+            android:layout_alignBottom="@+id/colon2"
+            android:layout_toEndOf="@+id/colon2"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="To"
+            android:textColor="@color/grey" />
+
+        <ImageView
+            android:id="@+id/imgFavourites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:padding="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"
+
+            app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
+
+        <ImageView
+            android:id="@+id/imgSelectFavourites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:visibility="gone"
+            android:padding="10dp"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/ic_favorite_black_24dp" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+</RelativeLayout>
+

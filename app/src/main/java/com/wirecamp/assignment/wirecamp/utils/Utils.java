@@ -7,7 +7,7 @@ import com.wirecamp.assignment.wirecamp.retrofit.RestClient;
 import com.wirecamp.assignment.wirecamp.retrofit.SOSInterface;
 
 /**
- * Created by hema on 7/2/18.
+ * This class is the base application of the class.
  */
 
 public class Utils {

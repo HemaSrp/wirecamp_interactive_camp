@@ -29,11 +29,11 @@ import com.wirecamp.assignment.wirecamp.R;
 import com.wirecamp.assignment.wirecamp.utils.SharedPrefManager;
 import com.wirecamp.assignment.wirecamp.utils.Utils;
 
-/**
- * Created by hema on 7/2/18.
- */
 
-// This class handles Google Firebase Authentication and also saves the user details to Firebase
+/**
+ * This class handles Google Firebase Authentication and also saves the user details to Firebase
+
+ */
 public class LoginScreen extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
@@ -45,7 +45,6 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
     private static final String TAG = "MainActivity";
     private String idToken;
     private final Context mContext = this;
-
     private String name, email;
     private String photo;
     private Uri photoUri;
@@ -76,9 +75,6 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
 
                 //if user is signed in, we call a helper method to save the user details to Firebase
                 if (user != null) {
-                    // User is signed in
-                  //  createUserInFirebaseHelper();
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -88,9 +84,11 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
     }
 
 
-    // This method configures Google SignIn
+    /**
+     *     This method configures Google SignIn
+     */
     public void configureSignIn(){
-// Configure sign-in to request the user's basic profile like name and email
+        // Configure sign-in to request the user's basic profile like name and email
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(this.getResources().getString(R.string.webclient_id))
                 .requestEmail()
@@ -104,15 +102,19 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
         mGoogleApiClient.connect();
     }
 
-    // This method is called when the signIn button is clicked on the layout
-    // It prompts the user to select a Google account.
+
+    /**
+     * This method is called when the signIn button is clicked on the layout and It prompts the user to select a Google account.
+     */
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
 
-    // This IS the method where the result of clicking the signIn button will be handled
+    /**
+     *  This is the method where the result of clicking the signIn button will be handled
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -130,7 +132,7 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
                 email = account.getEmail();
                 photoUri = account.getPhotoUrl();
                 photo = photoUri.toString();
-
+                Log.e("photo",photo.toString());
                 // Save Data to SharedPreference
                 sharedPrefManager = new SharedPrefManager(mContext);
                 sharedPrefManager.saveIsLoggedIn(mContext, true);
@@ -153,7 +155,9 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
         }
     }
 
-    //After a successful sign into Google, this method now authenticates the user with Firebase
+    /**
+     * After a successful sign into Google, this method now authenticates the user with Firebase
+     */
     private void firebaseAuthWithGoogle(AuthCredential credential){
        // showProgressDialog();
         mAuth.signInWithCredential(credential)
@@ -167,7 +171,6 @@ public class LoginScreen extends AppCompatActivity implements GoogleApiClient.Co
                             Toast.makeText(LoginScreen.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }else {
-                          //  createUserInFirebaseHelper();
                             Toast.makeText(LoginScreen.this, "Login successful",
                                     Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginScreen.this, WelcomeActivity.class);

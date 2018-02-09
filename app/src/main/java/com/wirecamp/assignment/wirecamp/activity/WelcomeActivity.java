@@ -25,17 +25,29 @@ import com.wirecamp.assignment.wirecamp.R;
 import com.wirecamp.assignment.wirecamp.utils.SharedPrefManager;
 
 /**
- * Created by hema on 7/2/18.
+ * This class displays the welocome screen of the app.
  */
 
 public class WelcomeActivity extends AppCompatActivity {
-
+    //Viewpager
     private ViewPager viewPager;
+
+    //Viewpager adapter
     private MyViewPagerAdapter myViewPagerAdapter;
+
+    //Dots layout
     private LinearLayout dotsLayout;
+
+    //Textview dots
     private TextView[] dots;
+
+    //Layouts
     private int[] layouts;
+
+    //Button
     private Button btnSkip, btnNext;
+
+    //Sharedprefernce manager
     private SharedPrefManager prefManager;
 
     @Override
@@ -101,6 +113,11 @@ public class WelcomeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method is used to add the bottom dots.
+     *
+     * @param currentPage page
+     */
     private void addBottomDots(int currentPage) {
         dots = new TextView[layouts.length];
 
@@ -120,6 +137,12 @@ public class WelcomeActivity extends AppCompatActivity {
             dots[currentPage].setTextColor(colorsActive[currentPage]);
     }
 
+    /**
+     * This method is used to get the item
+     *
+     * @param i position
+     * @return current item
+     */
     private int getItem(int i) {
         return viewPager.getCurrentItem() + i;
     }
@@ -130,7 +153,9 @@ public class WelcomeActivity extends AppCompatActivity {
        finish();
     }
 
-    //  viewpager change listener
+    /**
+     * viewpager change listener
+     */
     ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
 
         @Override

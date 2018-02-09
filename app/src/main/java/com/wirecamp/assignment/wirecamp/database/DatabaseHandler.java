@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by hema on 8/2/18.
+ * This class is used to store,retrieve and delete the data in db
  */
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -28,34 +28,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Table name
     private static final String CONNECTION_DETAILS = "CONNECTION_DETAILS";
 
-    // Photo id
+    // From name
     private static final String FROM_NAME = "FROM_NAME";
 
-    // Owner id
+    // From Latitude
     private static final String FROM_LATITUDE = "FROM_LATITUDE";
 
-    //Secret id
+    //From longitude
     private static final String FROM_LONGITUDE = "FROM_LONGITUDE";
 
-    //Server id
+    //Depature time
     private static final String DEPARTURE_TIME = "DEPARTURE_TIME";
 
-    // Farm
+    // Favourites
     private static final String FAVOURITES = "FAVOURITES";
 
-    // Title
+    // To name
     private static final String TO_NAME = "TO_NAME";
 
-    // Photo
+    // To latitude
     private static final String TO_LATITUDE = "TO_LATITUDE";
 
+    //To longitude
     private static final String TO_LONGITUDE = "TO_LONGITUDE";
 
+    //To arrival time
     private static final String TO_ARRIVAL_TIME = "TO_ARRIVAL_TIME";
 
-
-    //Photo url
-    private static final String PHOTO_URL = "photo_url";
+    //TO random id
     private static final String RANDOM_ID="RANDOM_ID";
 
     public DatabaseHandler(Context context) {
@@ -98,7 +98,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * @param photo object
      */
 
-    public void insertPhoto(DatabaseModel photo) {
+    public void insertCollections(DatabaseModel photo) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(FROM_LATITUDE, photo.getFromLatitude());
@@ -117,9 +117,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     /**
-     * This method is used to get all photos from the table
+     * This method is used to get all collection from the table
      *
-     * @return
+     * @return list
      */
     public List<DatabaseModel> getAllDetails() {
         List<DatabaseModel> photosList = new ArrayList<>();
@@ -131,7 +131,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-
                 DatabaseModel photo = new DatabaseModel();
                 photo.setFromName(cursor.getString(0));
                 photo.setFromLatitude(cursor.getDouble(1));
@@ -141,7 +140,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 photo.setToLatitude(cursor.getDouble(5));
                 photo.setToLongitude(cursor.getDouble(6));
                 photo.setArrivalTime(cursor.getString(7));
-                photo.setFavourites(cursor.getString(7));
+                photo.setFavourites(cursor.getString(9));
                 photo.setRandomId(cursor.getString(8));
                 photosList.add(photo);
             } while (cursor.moveToNext());
@@ -150,8 +149,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // return photo list
         return photosList;
     }
+
     /**
-     * This method is used to get all photos from the table
+     * This method is used to get all favourites from the table
      *
      * @return
      */
@@ -185,20 +185,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return photosList;
     }
     /**
-     * This method is used to update the bitmap image in photo id
+     * This method is used to update the favourites
      *
-     * @param photo
+     *
+     * @param updateString updateValue
+     * @param collection   value
      * @return 1
      */
-    public int updateContact(DatabaseModel photo) {
+    public int updateContact(String updateString, DatabaseModel collection) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(FAVOURITES, photo.getFavourites());
+        values.put(FAVOURITES,updateString);
 
         // updating row
         return db.update(CONNECTION_DETAILS, values, RANDOM_ID + " = ?",
-                new String[]{String.valueOf(photo.getRandomId())});
+                new String[]{String.valueOf(collection.getRandomId())});
     }
 
 
