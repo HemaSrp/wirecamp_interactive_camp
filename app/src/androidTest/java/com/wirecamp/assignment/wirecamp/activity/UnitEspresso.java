@@ -21,6 +21,8 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
@@ -62,7 +64,7 @@ public class UnitEspresso {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(3598092);
+            Thread.sleep(3598212);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -91,12 +93,61 @@ public class UnitEspresso {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(3586110);
+            Thread.sleep(3593397);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         pressBack();
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.searchTrainFrom),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.support.v7.widget.CardView")),
+                                        0),
+                                1),
+                        isDisplayed()));
+        appCompatEditText.perform(click());
+
+        ViewInteraction appCompatEditText2 = onView(
+                allOf(withId(R.id.searchTrainFrom),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.support.v7.widget.CardView")),
+                                        0),
+                                1),
+                        isDisplayed()));
+        appCompatEditText2.perform(click());
+
+        ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.searchTrainFrom),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.support.v7.widget.CardView")),
+                                        0),
+                                1),
+                        isDisplayed()));
+        appCompatEditText3.perform(replaceText("Lausanne"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText4 = onView(
+                allOf(withId(R.id.searchTrainTo),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.support.v7.widget.CardView")),
+                                        0),
+                                2),
+                        isDisplayed()));
+        appCompatEditText4.perform(replaceText("Geneve "), closeSoftKeyboard());
 
         ViewInteraction appCompatButton3 = onView(
                 allOf(withId(R.id.search), withText("Search"),
@@ -138,6 +189,50 @@ public class UnitEspresso {
                                 1),
                         isDisplayed()));
         appCompatImageButton.perform(click());
+
+        ViewInteraction appCompatImageButton2 = onView(
+                allOf(withContentDescription("Open navigation drawer"),
+                        childAtPosition(
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                withId(R.id.appBar),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton2.perform(click());
+
+        ViewInteraction appCompatImageButton3 = onView(
+                allOf(withContentDescription("Open navigation drawer"),
+                        childAtPosition(
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                withId(R.id.appBar),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton3.perform(click());
+
+        ViewInteraction appCompatImageButton4 = onView(
+                allOf(withContentDescription("Open navigation drawer"),
+                        childAtPosition(
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                withId(R.id.appBar),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton4.perform(click());
+
+        ViewInteraction appCompatImageButton5 = onView(
+                allOf(withContentDescription("Open navigation drawer"),
+                        childAtPosition(
+                                allOf(withId(R.id.toolbar),
+                                        childAtPosition(
+                                                withId(R.id.appBar),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton5.perform(click());
 
         ViewInteraction navigationMenuItemView = onView(
                 allOf(childAtPosition(
