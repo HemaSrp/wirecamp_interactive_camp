@@ -66,7 +66,7 @@ public class ConnectionFragment extends Fragment {
         }else{
             txtConnection.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
-            txtConnection.setText("No connection to display");
+            txtConnection.setText("No route connection available");
         }
     }
 

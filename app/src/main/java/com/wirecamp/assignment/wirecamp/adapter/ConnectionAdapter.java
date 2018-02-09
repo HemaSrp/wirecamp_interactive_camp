@@ -53,8 +53,21 @@ public class ConnectionAdapter extends RecyclerView.Adapter<ConnectionAdapter.My
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final DatabaseModel favouriteList = connectionList.get(position);
-        holder.fromName.setText(favouriteList.getFromName());
-        holder.toName.setText(favouriteList.getToName());
+        String fromName;
+        if (favouriteList.getFromName().length() >= 8) {
+            fromName = favouriteList.getFromName().substring(0, 8)+ "...";
+        } else {
+            fromName = favouriteList.getFromName();
+        }
+        holder.fromName.setText(fromName);
+        String toName;
+        if (favouriteList.getToName().length() >= 8) {
+            toName = favouriteList.getToName().substring(0, 8)+ "...";
+        } else {
+            toName = favouriteList.getToName();
+        }
+        holder.fromName.setText(fromName);
+        holder.toName.setText(toName);
         holder.arrivalTime.setText(Utils.dateFormat(favouriteList.getArrivalTime()));
         holder.depatureTime.setText(Utils.dateFormat(favouriteList.getDepatureTime()));
         checkFavourites(holder,favouriteList);

@@ -24,7 +24,7 @@
             android:text="From"
             android:gravity="center"
             android:drawablePadding="10dp"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="@color/colorPrimary"
             android:drawableLeft="@drawable/ic_directions_transit_black_24dp"
             />
@@ -38,6 +38,7 @@
             android:layout_toEndOf="@+id/fromName"
             android:gravity="center"
             android:layout_margin="10dp"
+            android:textSize="18sp"
             android:text="-------->"
             android:textColor="@color/grey" />
 
@@ -48,7 +49,7 @@
             android:layout_alignBaseline="@+id/arrows"
             android:layout_alignBottom="@+id/arrows"
             android:layout_toEndOf="@+id/arrows"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:gravity="center"
             android:text="To"
             android:textColor="@color/colorPrimary" />
@@ -61,7 +62,8 @@
             android:textColor="@color/grey"
             android:layout_marginTop="5dp"
             android:text="ArrivalTime"
-            android:textSize="14sp"/>
+            android:textSize="15sp"
+            />
         <TextView
             android:id="@+id/colon1"
             android:layout_width="wrap_content"
@@ -72,7 +74,7 @@
             android:gravity="center"
             android:layout_margin="10dp"
             android:text="     : "
-            android:textSize="14sp"
+            android:textSize="15sp"
 
             android:textColor="@color/grey" />
         <TextView
@@ -84,7 +86,7 @@
             android:layout_toEndOf="@+id/colon1"
             android:gravity="center"
             android:text="To"
-            android:textSize="14sp"
+            android:textSize="15sp"
 
             android:textColor="@color/grey" />
 
@@ -96,7 +98,8 @@
             android:text="DepatureTime"
             android:layout_below="@+id/arrivalTime"
             android:textColor="@color/grey"
-            android:textSize="14sp"/>
+            android:textSize="15sp"
+            />
         <TextView
             android:id="@+id/colon2"
             android:layout_width="wrap_content"
@@ -106,7 +109,7 @@
             android:layout_toEndOf="@+id/depatureTime"
             android:gravity="center"
             android:layout_margin="10dp"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:text=": "
             android:textColor="@color/grey" />
         <TextView
@@ -117,7 +120,7 @@
             android:layout_alignBottom="@+id/colon2"
             android:layout_toEndOf="@+id/colon2"
             android:gravity="center"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:text="To"
             android:textColor="@color/grey" />
 
@@ -127,10 +130,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:padding="10dp"
-            android:layout_marginRight="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
             android:visibility="gone"
-
             app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
 
         <ImageView
@@ -139,9 +142,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+
             android:visibility="gone"
-            android:padding="10dp"
-            android:layout_marginRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             app:srcCompat="@drawable/ic_favorite_black_24dp" />
 
     </RelativeLayout>

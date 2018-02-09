@@ -91,12 +91,12 @@ public class SearchFragment extends DialogFragment {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                txtFrom="Lausanne";
-                txtTo="Genève";
-                if(txtFrom.isEmpty()&&txtFrom==null){
-                    Toast.makeText(getActivity(),"Please enter the from location",Toast.LENGTH_LONG).show();
-                }else if(txtTo.isEmpty()&&txtTo==null){
-                    Toast.makeText(getActivity(),"Please enter the to location",Toast.LENGTH_LONG).show();
+                txtFrom=edtSearchTrainFrom.getText().toString().trim();
+                txtTo=edtSearchTrainTo.getText().toString().trim();
+                if(txtFrom.isEmpty()||txtFrom==null){
+                    Toast.makeText(getActivity(),"Please enter the pickup location",Toast.LENGTH_LONG).show();
+                }else if(txtTo.isEmpty()||txtTo==null){
+                    Toast.makeText(getActivity(),"Please enter the destination location",Toast.LENGTH_LONG).show();
                 }else {
                     getDialog().setCancelable(false);
                     db.deleteRecord();
@@ -152,7 +152,12 @@ public class SearchFragment extends DialogFragment {
 
 
                     } else {
-                        Toast.makeText(getActivity(), "Error loading from API", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "No route connection available", Toast.LENGTH_LONG).show();
+                        mprogressBar.setVisibility(View.GONE);
+                        mCallback.onClickButton();
+                        txtLoading.setVisibility(View.GONE);
+                        dismiss();
+
                     }
                 }
 
